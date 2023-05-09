@@ -1,0 +1,155 @@
+Download the buyingMilksol1.c, buyingMilksol2.c, buyingMilksol3.c, and buyingMilksol4.c programs 
+from Camino, then compile and run. Write down your observation on each solution try. 
+The value of note is 0, the value of milk 0
+The value of note is 0, the value of milk 0
+Thread B is buying milk
+The value of note is 1, the value of milk 0
+Thread A is buying milk
+The value of note is 1, the value of milk 1
+The value of note is 0, the value of milk 1
+
+buyingMilksol2
+The value of note is 0, the value of milk 0
+The value of note is 0, the value of milk 0
+The value of note is 1, the value of milk 0
+
+buyingMilksol3
+The value of noteA is 0, the value of noteB is 0, the value of milk 0
+The value of noteA is 0, the value of noteB is 0, the value of milk 0
+The value of noteA is 1, the value of noteB is 1, the value of milk 0
+
+buyingMilksol4
+The value of noteA is 0, the value of noteB is 0, the value of milk 0
+The value of noteA is 0, the value of noteB is 0, the value of milk 0
+Thread A is buying milk
+The value of noteA is 1, the value of noteB is 0, the value of milk 0
+Finally: the value of noteA is 0, the value of noteB is 0, the value of milk 1
+
+Download the threadSync.c program from Camino, then compile and run several times. The comment at 
+the top of program explains how to compile and run the program. 
+Explain what happens when you run the threadSync.c program? How does this program differ from 
+theadHello.c program
+Thread 0 Entered Critical Section..
+Thread 1 Entered Critical Section..
+                        Thread 0 returned 
+Thread 2 Entered Critical Section..
+                        Thread 1 returned 
+Thread 3 Entered Critical Section..
+                        Thread 2 returned 
+                        Thread 3 returned 
+Thread 4 Entered Critical Section..
+Thread 5 Entered Critical Section..
+                        Thread 4 returned 
+Thread 6 Entered Critical Section..
+                        Thread 5 returned 
+Thread 7 Entered Critical Section..
+                        Thread 6 returned 
+Thread 8 Entered Critical Section..
+                        Thread 7 returned 
+Thread 9 Entered Critical Section..
+                        Thread 8 returned 
+                        Thread 9 returned 
+Main thread done.
+There are times when the next thread enters the previous thread before the previous thread can return. The difference between this program and 
+threadHello is that threadSync uses mutex semaphore to lock threads when they enter their critical section. 
+
+Modified step 3 output
+Thread 0 Entered Critical Section..
+Thread 1 Entered Critical Section..
+                        Thread 0 returned 
+Thread 2 Entered Critical Section..
+                        Thread 1 returned 
+Thread 3 Entered Critical Section..
+                        Thread 2 returned 
+Thread 4 Entered Critical Section..
+                        Thread 3 returned 
+Thread 5 Entered Critical Section..
+                        Thread 4 returned 
+Thread 6 Entered Critical Section..
+                        Thread 5 returned 
+Thread 7 Entered Critical Section..
+                        Thread 6 returned 
+Thread 8 Entered Critical Section..
+                        Thread 7 returned 
+Thread 9 Entered Critical Section..
+                        Thread 8 returned 
+                        Thread 9 returned 
+Main thread done.
+[ple@linux10618 coen177]$ gcc -pthread lab5threadsync2.c
+[ple@linux10618 coen177]$ ./a.out
+Thread 0 Entered Critical Section..
+Thread 1 Entered Critical Section..
+                        Thread 0 returned 
+Thread 3 Entered Critical Section..
+                        Thread 1 returned 
+Thread 2 Entered Critical Section..
+Thread 4 Entered Critical Section..
+                        Thread 2 returned 
+                        Thread 3 returned 
+Thread 5 Entered Critical Section..
+                        Thread 4 returned 
+Thread 6 Entered Critical Section..
+                        Thread 5 returned 
+Thread 7 Entered Critical Section..
+                        Thread 6 returned 
+Thread 9 Entered Critical Section..
+                        Thread 7 returned 
+Thread 8 Entered Critical Section..
+                        Thread 8 returned 
+                        Thread 9 returned 
+Main thread done.
+
+Producer Consumer using semaphore
+Producer #: 0 produced item: 77 at buffer space: 1
+Producer #: 0 produced item: 77 at buffer space: 2
+Producer #: 0 produced item: 98 at buffer space: 3
+Producer #: 0 produced item: 91 at buffer space: 4
+Producer #: 0 produced item: 46 at buffer space: 5
+Producer #: 0 produced item: 74 at buffer space: 6
+Producer #: 0 produced item: 81 at buffer space: 7
+Producer #: 0 produced item: 80 at buffer space: 8
+                        Consumer #: 0 consumed item: 77 at buffer space: 1
+                        Consumer #: 0 consumed item: 77 at buffer space: 2
+                        Consumer #: 0 consumed item: 98 at buffer space: 3
+                        Consumer #: 0 consumed item: 91 at buffer space: 4
+                        Consumer #: 0 consumed item: 46 at buffer space: 5
+                        Consumer #: 0 consumed item: 74 at buffer space: 6
+                        Consumer #: 0 consumed item: 81 at buffer space: 7
+Producer #: 1 produced item: 77 at buffer space: 9
+Producer #: 1 produced item: 45 at buffer space: 0
+Producer #: 1 produced item: 25 at buffer space: 1
+Producer #: 1 produced item: 7 at buffer space: 2
+Producer #: 1 produced item: 35 at buffer space: 3
+Producer #: 1 produced item: 59 at buffer space: 4
+
+Producer Consumer using condition variables
+Producer #: 0 produced item: 43 at buffer space: 0
+Producer #: 1 produced item: 43 at buffer space: 1
+                        Consumer #: 0 consumed item: 43 at buffer space: 0
+Producer #: 2 produced item: 43 at buffer space: 2
+                        Consumer #: 1 consumed item: 43 at buffer space: 1
+Producer #: 0 produced item: 43 at buffer space: 3
+Producer #: 1 produced item: 30 at buffer space: 4
+Producer #: 2 produced item: 72 at buffer space: 5
+Producer #: 1 produced item: 21 at buffer space: 6
+Producer #: 0 produced item: 37 at buffer space: 7
+Producer #: 2 produced item: 88 at buffer space: 8
+Producer #: 1 produced item: 62 at buffer space: 9
+Producer #: 0 produced item: 99 at buffer space: 0
+Producer #: 2 produced item: 57 at buffer space: 1
+                        Consumer #: 0 consumed item: 43 at buffer space: 2
+Producer #: 1 produced item: 40 at buffer space: 2
+                        Consumer #: 1 consumed item: 43 at buffer space: 3
+Producer #: 0 produced item: 5 at buffer space: 3
+                        Consumer #: 0 consumed item: 30 at buffer space: 4
+Producer #: 2 produced item: 39 at buffer space: 4
+                        Consumer #: 1 consumed item: 72 at buffer space: 5
+Producer #: 1 produced item: 78 at buffer space: 5
+                        Consumer #: 0 consumed item: 21 at buffer space: 6
+Producer #: 0 produced item: 82 at buffer space: 6
+                        Consumer #: 1 consumed item: 37 at buffer space: 7
+Producer #: 2 produced item: 20 at buffer space: 7
+                        Consumer #: 0 consumed item: 88 at buffer space: 8
+Producer #: 1 produced item: 53 at buffer space: 8
+                        Consumer #: 1 consumed item: 62 at buffer space: 9
+Producer #: 0 produced item: 22 at buffer space: 9

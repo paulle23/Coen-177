@@ -1,0 +1,18 @@
+Explain what happens when you run the threadHello.c program? Do you get the same result if you run it 
+multiple times? What if you are also running some other demanding processes (e.g., compiling a big 
+program, playing a Flash game on a website, or watching streaming video) when you run this program?
+    It prints out Hello from thread i with thread ID from 0 to 19 not in order, and then it prints out Thread[i] returned in order from 0 to 19
+    If you run it multiple times, you do not get the same result for Hello from thread[i], but the order for Thread[i] returned is always the same.
+    This is true when you run it along other demanding processes. 
+
+The function go() has the parameter arg passed a local variable. Are these variables per-thread or
+shared state? Where does the compiler store these variables’ states?
+    Arg is per thread and the variables' states are stored in the TCB or the thread control block
+
+The main() has local variable i. Is this variable per-thread or shared state? Where does the compiler 
+store this variable?
+    i is a shared state variable that is saved in the main global variables. 
+
+Delete the second for loop in threadHello.c program so that the main routine simply creates NTHREADS 
+threads and then prints “Main thread done.” What are the possible outputs of the program now. Explain
+    The possible outputs of the program once the second loop is deleted is Hello from thread i with thread ID. This is not entirely in order however. It does not have pthread_join
